@@ -122,6 +122,7 @@ jobs:
         run: |
           echo "Deploying to production..."
           docker cp app/. devops_prod:/usr/share/nginx/html/
+          docker exec devops_prod sed -i 's/>staging</>production</g' /usr/share/nginx/html/index.html
           docker exec devops_prod nginx -s reload
           echo "Deployed: http://localhost:8082"
 
