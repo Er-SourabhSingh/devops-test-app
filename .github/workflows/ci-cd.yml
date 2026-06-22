@@ -109,7 +109,7 @@ jobs:
     name: Deploy → Production
     runs-on: self-hosted
     needs: [test, sonarqube]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     environment:
       name: production
       url: http://localhost:8082
