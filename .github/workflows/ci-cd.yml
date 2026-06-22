@@ -74,8 +74,7 @@ jobs:
             -Dsonar.sources=. \
             -Dsonar.exclusions=node_modules/**,coverage/** \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.scm.revision=${{ github.sha }} \
-            -Dsonar.branch.name=${{ github.ref_name }}
+            -Dsonar.scm.revision=${{ github.sha }}
 
   # ── Job 3: Deploy to Staging (on push to develop) ───────────
   deploy-staging:
