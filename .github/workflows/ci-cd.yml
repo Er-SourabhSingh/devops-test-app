@@ -1,18 +1,12 @@
 name: CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main, master, develop, 'feature/**' ]
-
-  pull_request:
-    branches: [ main, master, develop ]
-
   workflow_dispatch:
     inputs:
       ref:
         description: 'Branch to deploy (develop/master)'
         required: true
-        default: 'master'
+        default: ''
 
 jobs:
 
@@ -23,8 +17,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Debug Input
         run: |
@@ -40,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests with coverage
+      - name: Run tests
         run: npm test -- --coverage --coverageReporters=lcov text
 
       - name: Upload coverage
@@ -48,7 +40,6 @@ jobs:
         with:
           name: coverage
           path: coverage/
-          retention-days: 1
 
   sonarqube:
     name: SonarQube Scan
@@ -58,8 +49,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Download coverage
         uses: actions/download-artifact@v4
@@ -78,17 +67,14 @@ jobs:
             -Dsonar.projectKey=devops-test-app \
             -Dsonar.sources=. \
             -Dsonar.exclusions=node_modules/**,coverage/** \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.scm.revision=${{ github.sha }}
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
 
   deploy-staging:
     name: Deploy → Staging
     runs-on: self-hosted
     needs: [test, sonarqube]
 
-    if: |
-      github.event_name == 'workflow_dispatch' &&
-      github.event.inputs.ref == 'develop'
+    if: ${{ github.event.inputs.ref == 'develop' }}
 
     environment:
       name: staging
@@ -107,16 +93,14 @@ jobs:
       - name: Verify Staging
         run: |
           sleep 2
-          curl -f --retry 3 http://devops_staging:80 -o /dev/null -s
+          curl -f --retry 3 http://devops_staging:80
 
   deploy-production:
     name: Deploy → Production
     runs-on: self-hosted
     needs: [test, sonarqube]
 
-    if: |
-      github.event_name == 'workflow_dispatch' &&
-      github.event.inputs.ref == 'master'
+    if: ${{ github.event.inputs.ref == 'master' }}
 
     environment:
       name: production
@@ -130,10 +114,9 @@ jobs:
         run: |
           echo "Deploying to production..."
           docker cp app/. devops_prod:/usr/share/nginx/html/
-          docker exec devops_prod sed -i 's/>staging</>production</g' /usr/share/nginx/html/index.html
           docker exec devops_prod nginx -s reload
 
       - name: Verify Production
         run: |
           sleep 2
-          curl -f --retry 3 http://devops_prod:80 -o /dev/null -s
+          curl -f --retry 3 http://devops_prod:80
