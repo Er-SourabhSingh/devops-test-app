@@ -61,7 +61,7 @@ jobs:
             -e SONAR_HOST_URL=http://devops_sonarqube:9000 \
             -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \
             -v "$PWD:/usr/src" \
-            sonarsource/sonar-scanner-cli:6 \
+            sonarsource/sonar-scanner-cli:11.1 \
             -Dsonar.projectKey=devops-test-app \
             -Dsonar.sources=. \
             -Dsonar.exclusions=node_modules/**,coverage/** \
