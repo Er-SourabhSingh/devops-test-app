@@ -14,11 +14,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+ 
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+ 
       - run: npm install
+ 
       - run: npm test -- --coverage --coverageReporters=lcov text
+ 
       - uses: actions/upload-artifact@v4
         with:
           name: coverage-staging
@@ -44,19 +48,15 @@ jobs:
           name: coverage-staging
           path: coverage/
  
-      - run: |
+      - name: SonarQube Scan
+        run: |
           docker run --rm \
             --network devops-testing-net \
             -e SONAR_HOST_URL=http://sonarqube:9000 \
             -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \
             -v "$PWD:/usr/src" \
-            sonarsource/sonar-scanner-cli:11.1 \
-            -Dsonar.projectKey=devops-test-app \
-            -Dsonar.sources=. \
-            -Dsonar.inclusions=**/*.js \
-            -Dsonar.exclusions=node_modules/**,coverage/** \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.scm.revision=${{ github.sha }}
+            -w /usr/src \
+            sonarsource/sonar-scanner-cli:11.1
  
   deploy:
     name: Deploy → Staging
@@ -65,8 +65,10 @@ jobs:
     environment:
       name: staging
       url: http://localhost:8081
+ 
     steps:
       - uses: actions/checkout@v4
+ 
       - name: Deploy to Staging
         run: |
           echo "Deploying to staging..."
