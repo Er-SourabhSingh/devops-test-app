@@ -48,10 +48,6 @@ jobs:
           name: coverage-staging
           path: coverage/
  
-      - name: Get workspace path on volume
-        id: workspace
-        run: echo "rel=${PWD#/tmp/runner-work/}" >> $GITHUB_OUTPUT
-
       - name: SonarQube Scan
         run: |
           docker run --rm \
@@ -61,10 +57,10 @@ jobs:
             -v docker-testing-env_runner_work:/runner_work \
             sonarsource/sonar-scanner-cli:11.1 \
             -Dsonar.projectKey=devops-test-app \
-            -Dsonar.sources=/runner_work/${{ steps.workspace.outputs.rel }} \
+            -Dsonar.sources=/runner_work/devops-test-app/devops-test-app \
             -Dsonar.inclusions=**/*.js \
             -Dsonar.exclusions=**/node_modules/**,**/coverage/**,**/dist/** \
-            -Dsonar.javascript.lcov.reportPaths=/runner_work/${{ steps.workspace.outputs.rel }}/coverage/lcov.info \
+            -Dsonar.javascript.lcov.reportPaths=/runner_work/devops-test-app/devops-test-app/coverage/lcov.info \
             -Dsonar.scm.revision=${{ github.sha }}
  
   deploy:
