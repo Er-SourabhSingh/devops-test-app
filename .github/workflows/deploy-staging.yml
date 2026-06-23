@@ -32,16 +32,16 @@ jobs:
     name: SonarQube Scan
     runs-on: self-hosted
     needs: test
+ 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
  
-      - name: Show files
+      - name: Verify JS Files
         run: |
           pwd
-          ls -la
-          find . -type f
+          find . -name "*.js"
  
       - uses: actions/download-artifact@v4
         with:
@@ -55,13 +55,18 @@ jobs:
             -e SONAR_HOST_URL=http://sonarqube:9000 \
             -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \
             -v "$PWD:/usr/src" \
-            -w /usr/src \
-            sonarsource/sonar-scanner-cli:11.1
+            sonarsource/sonar-scanner-cli:11.1 \
+            -Dsonar.projectKey=devops-test-app \
+            -Dsonar.sources=. \
+            -Dsonar.inclusions=**/*.js \
+            -Dsonar.exclusions=node_modules/**,coverage/**,dist/** \
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
  
   deploy:
     name: Deploy → Staging
     runs-on: self-hosted
     needs: [test, sonarqube]
+ 
     environment:
       name: staging
       url: http://localhost:8081
