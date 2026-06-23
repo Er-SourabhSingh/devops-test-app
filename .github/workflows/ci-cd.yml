@@ -12,6 +12,7 @@ on:
       ref:
         description: 'Branch to deploy (develop/master)'
         required: true
+        default: 'develop'
 
 jobs:
 
