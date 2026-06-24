@@ -36,6 +36,15 @@ jobs:
         with:
           name: coverage-production
           path: coverage/
+      - name: Debug - List files
+        run: |
+          echo "=== PWD ==="
+          pwd
+          echo "=== Root JS files ==="
+          ls -la *.js *.py *.json 2>/dev/null || echo "No files at root"
+          echo "=== All JS/PY files ==="
+          find . -name "*.js" -not -path "*/node_modules/*" | head -20
+          find . -name "*.py" | head -10
       - run: |
           docker run --rm \
             --network devops-testing-net \
@@ -45,8 +54,6 @@ jobs:
             sonarsource/sonar-scanner-cli:11.1 \
             -Dsonar.projectKey=devops-test-app-master \
             -Dsonar.sources=. \
-            '-Dsonar.inclusions=**/*.js,**/*.py' \
-            '-Dsonar.exclusions=node_modules/**,coverage/**,**/*.java' \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
             -Dsonar.scm.revision=${{ github.sha }}
 
