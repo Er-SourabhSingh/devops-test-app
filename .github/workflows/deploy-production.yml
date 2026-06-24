@@ -48,18 +48,16 @@ jobs:
           find . -type f | head -100
 
       - name: SonarQube Scan
-        run: |
-          docker run --rm \
-            --network devops-testing-net \
-            -e SONAR_HOST_URL=http://sonarqube:9000 \
-            -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \
-            -v "$PWD:/usr/src" \
-            sonarsource/sonar-scanner-cli:5.0.1 \
-            -Dsonar.projectKey=devops-test-app-master \
-            -Dsonar.projectBaseDir=/usr/src \
-            -Dsonar.sources=/usr/src \
-            -Dsonar.exclusions=**/node_modules/**,**/coverage/**,**/dist/** \
-            -Dsonar.javascript.lcov.reportPaths=/usr/src/coverage/lcov.info \
+        uses: sonarsource/sonarqube-scan-action@v5
+        env:
+          SONAR_HOST_URL: http://sonarqube:9000
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=devops-test-app-master
+            -Dsonar.sources=.
+            -Dsonar.exclusions=**/node_modules/**,**/coverage/**,**/dist/**
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.scm.revision=${{ github.sha }}
 
   deploy:
