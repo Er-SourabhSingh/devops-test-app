@@ -45,6 +45,7 @@ jobs:
             sonarsource/sonar-scanner-cli:11.1 \
             -Dsonar.projectKey=devops-test-app \
             -Dsonar.sources=. \
+            -Dsonar.inclusions=**/*.js,**/*.py,**/*.java \
             -Dsonar.exclusions=node_modules/**,coverage/** \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
             -Dsonar.scm.revision=${{ github.sha }}
