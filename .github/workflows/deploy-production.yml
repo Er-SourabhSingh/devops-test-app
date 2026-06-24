@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '20'
       - run: npm install
-      - run: npm test -- --coverage --coverageReporters=lcov text
+      - run: npx jest --coverage --coverageReporters=lcov text
       - uses: actions/upload-artifact@v4
         with:
           name: coverage-production
