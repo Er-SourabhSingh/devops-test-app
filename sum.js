@@ -14,3 +14,9 @@ module.exports = sum;
 // fix: handle edge case in sum validation
 // feat: add export report feature
 // feat!: breaking change - new payment API
+// chore: update dependencies
+// docs: update README
+// style: fix indentation
+// test: add unit tests
+// refactor: extract helper function
+// perf: improve query performance
