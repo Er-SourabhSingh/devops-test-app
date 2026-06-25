@@ -21,3 +21,5 @@ module.exports = sum;
 // refactor: extract helper function
 // perf: improve query performance
 // perf: cache expensive calculation
+
+// ET-2 test commit placeholder
