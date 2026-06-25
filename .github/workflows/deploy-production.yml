@@ -35,13 +35,13 @@ jobs:
           if [ -d "test-results" ]; then
             for file in test-results/*.xml; do
               echo "Uploading $file to Redmine... (build=$BUILD_ID)"
-              SIGNATURE=$(openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" "$file" | sed 's/^.* //')
+              XML_BASE64=$(base64 -w 0 "$file")
+              JSON_BODY="{\"build_external_id\":\"$BUILD_ID\",\"junit_xml_base64\":\"$XML_BASE64\"}"
+              SIGNATURE=$(echo -n "$JSON_BODY" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | sed 's/^.* //')
               curl -s -X POST \
                 -H "X-Hub-Signature-256: sha256=$SIGNATURE" \
-                -H "X-Redmine-API-Key: $REDMINE_API_KEY" \
-                -H "X-Build-External-Id: $BUILD_ID" \
-                --data-binary @"$file" \
-                -H "Content-Type: application/xml" \
+                -H "Content-Type: application/json" \
+                -d "$JSON_BODY" \
                 "$REDMINE_URL/devops/webhook/github/$REDMINE_PROJECT/test_results"
             done
           fi
