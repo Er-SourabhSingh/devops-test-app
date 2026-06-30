@@ -1,0 +1,24 @@
+name: Artifact Test
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate test artifact
+        run: |
+          mkdir -p dist
+          echo "Build output v1.0 - $(date)" > dist/app-build.txt
+          echo "Binary placeholder" > dist/app.bin
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
