@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1782391856760" clover="3.2.0">
+  <project timestamp="1782391856760" name="All files">
+    <metrics statements="34" coveredstatements="15" conditionals="30" coveredconditionals="5" methods="11" coveredmethods="5" elements="75" coveredelements="25" complexity="0" loc="34" ncloc="34" packages="1" files="2" classes="2"/>
+    <file name="issues.js" path="C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\issues.js">
+      <metrics statements="31" coveredstatements="13" conditionals="28" coveredconditionals="5" methods="9" coveredmethods="4"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="10" count="3" type="cond" truecount="3" falsecount="1"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="18" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="25" count="0" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="47" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="48" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="64" count="0" type="stmt"/>
+      <line num="69" count="0" type="stmt"/>
+      <line num="70" count="0" type="stmt"/>
+      <line num="78" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="79" count="1" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
+      <line num="86" count="1" type="stmt"/>
+      <line num="87" count="1" type="stmt"/>
+      <line num="89" count="1" type="stmt"/>
+    </file>
+    <file name="sum.js" path="C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\sum.js">
+      <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <line num="2" count="9" type="stmt"/>
+      <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="10" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

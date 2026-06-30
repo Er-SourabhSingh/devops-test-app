@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="16" failures="2" errors="0" time="2.612">
+  <testsuite name="undefined" errors="0" failures="2" skipped="0" timestamp="2026-06-25T12:50:54" time="2.277" tests="16">
+    <testcase classname=" adds 1 + 2 to equal 3 [issue-4]" name=" adds 1 + 2 to equal 3 [issue-4]" time="0.002">
+    </testcase>
+    <testcase classname=" adds 0 + 0 to equal 0 [issue-4]" name=" adds 0 + 0 to equal 0 [issue-4]" time="0">
+    </testcase>
+    <testcase classname=" adds negative numbers correctly [issue-4]" name=" adds negative numbers correctly [issue-4]" time="0">
+    </testcase>
+    <testcase classname=" adds large numbers [issue-4]" name=" adds large numbers [issue-4]" time="0">
+    </testcase>
+    <testcase classname=" adds float numbers [issue-4]" name=" adds float numbers [issue-4]" time="0">
+    </testcase>
+    <testcase classname=" checkAge returns invalid for zero age [issue-3]" name=" checkAge returns invalid for zero age [issue-3]" time="0.001">
+    </testcase>
+    <testcase classname=" checkAge always returns invalid due to impossible condition [issue-3]" name=" checkAge always returns invalid due to impossible condition [issue-3]" time="0">
+    </testcase>
+    <testcase classname=" checkAge returns invalid for negative age [issue-3]" name=" checkAge returns invalid for negative age [issue-3]" time="0.001">
+    </testcase>
+    <testcase classname=" computeTotal always returns 0 regardless of inputs [issue-5]" name=" computeTotal always returns 0 regardless of inputs [issue-5]" time="0">
+    </testcase>
+    <testcase classname=" calculate returns correct sum ignoring unused variables [issue-5]" name=" calculate returns correct sum ignoring unused variables [issue-5]" time="0.001">
+    </testcase>
+    <testcase classname=" isValid returns true for true input [issue-5]" name=" isValid returns true for true input [issue-5]" time="0">
+    </testcase>
+    <testcase classname=" isValid returns false for false input [issue-5]" name=" isValid returns false for false input [issue-5]" time="0.001">
+    </testcase>
+    <testcase classname=" sum handles string input gracefully [issue-6]" name=" sum handles string input gracefully [issue-6]" time="0.002">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;&quot;
+Received: &quot;ab&quot;
+    at Object.toBe (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\sum.test.js:61:25)
+    at Promise.then.completed (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at _runTest (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:126:9)
+    at run (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-runner\build\runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname=" computeTotal returns actual sum of inputs [issue-6]" name=" computeTotal returns actual sum of inputs [issue-6]" time="0.001">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 7
+Received: 0
+    at Object.toBe (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\sum.test.js:65:30)
+    at Promise.then.completed (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at _runTest (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:126:9)
+    at run (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Sourabh Singh\Downloads\DEVOPS GUIDES\docker-testing-env\sample-app\node_modules\jest-runner\build\runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname=" adds negative and positive to zero (untagged)" name=" adds negative and positive to zero (untagged)" time="0">
+    </testcase>
+    <testcase classname=" sum is commutative (untagged)" name=" sum is commutative (untagged)" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
