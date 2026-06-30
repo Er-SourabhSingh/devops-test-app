@@ -12,4 +12,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run tests
-        run: echo "Build passed successfully"
+        run: |
+          echo "Running tests..."
+          npm install
+          npm test
+
+      - name: Intentional failure for testing
+        run: exit 1
