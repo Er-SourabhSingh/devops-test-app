@@ -19,7 +19,6 @@ jobs:
           node-version: '20'
       - run: npm install
       - run: node node_modules/jest/bin/jest.js --coverage --coverageReporters=lcov text
-        continue-on-error: true
       - uses: actions/upload-artifact@v4
         with:
           name: coverage-production

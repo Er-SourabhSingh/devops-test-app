@@ -74,3 +74,8 @@ test('adds negative and positive to zero (untagged)', () => {
 test('sum is commutative (untagged)', () => {
   expect(sum(2, 3)).toBe(sum(3, 2));
 });
+
+// TEMP: intentional failure to test build-failed notification (feature 113621)
+test('notification-test-build-failed [issue-4]', () => {
+  expect(sum(1, 1)).toBe(999);
+});
