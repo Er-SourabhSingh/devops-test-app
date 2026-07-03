@@ -1,5 +1,5 @@
 # devops-test-app
 
-Sample application for Redmineflux DevOps plugin testing .
+Sample application for Redmineflux DevOps plugin testing.
 
 <!-- cycle time test --> test
