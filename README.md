@@ -2,4 +2,5 @@
 
 Sample application for Redmineflux DevOps plugin testing.
 
-<!-- cycle time test --> test
+<!-- cycle time test -->
+testing merigin build
