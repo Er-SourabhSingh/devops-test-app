@@ -2,4 +2,4 @@
 
 Sample application for Redmineflux DevOps plugin testing .
 
-<!-- cycle time test -->
+<!-- cycle time test --> test
