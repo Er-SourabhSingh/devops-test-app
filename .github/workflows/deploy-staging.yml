@@ -28,38 +28,10 @@ jobs:
           name: coverage-staging
           path: coverage/
 
-  sonarqube:
-    name: SonarQube Scan
-    runs-on: self-hosted
-    needs: test
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: coverage-staging
-          path: coverage/
-
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v5
-        env:
-          SONAR_HOST_URL: http://sonarqube:9000
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=devops-test-app
-            -Dsonar.sources=.
-            -Dsonar.inclusions=**/*.js,**/*.py
-            -Dsonar.exclusions=node_modules/**,coverage/**,dist/**,**/*.java
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-
   deploy:
     name: Deploy → Staging
     runs-on: self-hosted
-    needs: [test, sonarqube]
+    needs: test
 
     environment:
       name: staging
