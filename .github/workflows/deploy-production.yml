@@ -25,6 +25,32 @@ jobs:
         with:
           name: coverage-production
           path: coverage/
+      - name: Post License Report to Redmine
+        if: always()
+        env:
+          REDMINE_PROJECT: ${{ secrets.REDMINE_PROJECT }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          npx --yes license-checker --json --out /tmp/lc.json 2>/dev/null || echo '{}' > /tmp/lc.json
+          cat > /tmp/gen_payload.js << 'NODEEOF'
+          const fs = require('fs');
+          const lc = JSON.parse(fs.readFileSync('/tmp/lc.json', 'utf8') || '{}');
+          const deps = Object.entries(lc).map(([k, v]) => {
+            const i = k.lastIndexOf('@');
+            const n = i > 0 ? k.slice(0, i).replace(/^\//,'') : k;
+            const ver = i > 0 ? k.slice(i + 1) : 'unknown';
+            return { locator: 'npm+' + n + '$' + ver, version: ver, licenses: [v.licenses || 'NOASSERTION'] };
+          });
+          const p = { project: { title: 'devops-test-app', revision: process.env.COMMIT_SHA }, dependencies: deps, scanned_at: new Date().toISOString() };
+          fs.writeFileSync('/tmp/fp.json', JSON.stringify(p));
+          console.log('deps: ' + deps.length);
+          NODEEOF
+          node /tmp/gen_payload.js
+          curl -s -o /dev/null -w "FOSSA->Redmine: %{http_code}\n" -X POST \
+            -H 'Content-Type: application/json' \
+            -d @/tmp/fp.json \
+            "http://host.docker.internal:3006/devops/webhook/fossa/$REDMINE_PROJECT" || true
+
       - name: Upload test results to Redmine
         if: always()
         env:
