@@ -84,6 +84,11 @@ jobs:
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.scm.revision=${{ github.sha }}
 
+      - name: FOSSA License Scan
+        uses: fossas/fossa-action@main
+        with:
+          api-key: ${{ secrets.FOSSA_API_KEY }}
+
   deploy:
     name: Deploy → Production
     runs-on: self-hosted
