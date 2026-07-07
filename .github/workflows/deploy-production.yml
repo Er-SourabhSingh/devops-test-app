@@ -83,7 +83,6 @@ jobs:
             -Dsonar.exclusions=**/node_modules/**,**/coverage/**,**/dist/**,**/*.java
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.scm.revision=${{ github.sha }}
-            -Dsonar.branch.name=${{ github.ref_name }}
 
   deploy:
     name: Deploy → Production
