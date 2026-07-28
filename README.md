@@ -1,2 +1,10 @@
+# devops-test-app
 
-tc-c-test-run
+Sample application for Redmineflux DevOps plugin testing.
+test
+<!-- cycle time test -->
+testing merigin build
+
+new branch
+52
+
